@@ -1,0 +1,53 @@
+source_directories:
+    - /mnt/data
+repositories:
+    - path: ssh://user@domain:23/./vaultwarden
+      label: rsync
+
+keep_hourly: 24
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 6
+
+#ssh_command: ssh -i /root/.ssh/id_ed25519
+
+
+#healthchecks:
+    # Healthchecks ping URL or UUID to notify when a backup
+    # begins, ends, errors, or to send only logs.
+    #ping_url: https://hc-ping.com/xxxxxxxx
+
+    # Verify the TLS certificate of the ping URL host. Defaults to
+    # true.
+    # verify_tls: false
+
+    # Send borgmatic logs to Healthchecks as part the "finish",
+    # "fail", and "log" states. Defaults to true.
+    # send_logs: false
+
+    # Number of bytes of borgmatic logs to send to Healthchecks,
+    # ideally the same as PING_BODY_LIMIT configured on the
+    # Healthchecks server. Set to 0 to send all logs and disable
+    # this truncation. Defaults to 100000.
+    # ping_body_limit: 200000
+
+    # List of one or more monitoring states to ping for: "start",
+    # "finish", "fail", and/or "log". Defaults to pinging for all
+    # states.
+    #states:
+    #    - finish
+    #    - fail
+
+#apprise:
+#    services:
+#        - url: tgram://xxx:yyy/
+#          label: telegram
+#    finish:
+#        title: BorgBase
+#        body: backup done.
+#    fail:
+#        title: BorgBase
+#        body: backup failed.
+#    states:
+#        - finish
+#        - fail
