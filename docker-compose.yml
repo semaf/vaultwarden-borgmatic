@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    ports:
+      - 11080:80
+      - 11443:443
+    environment:
+      DOMAIN: "https://domain.com"  # Your domain; vaultwarden needs to know it's https to work properly with attachments
+    volumes:
+      - ./vw-data:/data
+    networks:
+        - vault-net
+
+volumes:
+  vw-data:
+
+networks:
+  vault-net:
+    external: true
