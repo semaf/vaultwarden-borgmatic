@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+  borgmatic-vault:
+    image: ghcr.io/borgmatic-collective/borgmatic
+    container_name: borgmatic-vault
+    hostname: borgmatic-vault
+    restart: always
+    volumes:
+      - ./vw-data:/mnt/data
+      - borg-config-vol-1:/root/.config/borg
+      - borg-cache-vol-1:/root/.cache/borg
+      - ./borgmatic_vault:/etc/borgmatic.d:Z
+      - ./borgmatic_vault/ssh:/root/.ssh:Z
+    environment:
+      - TZ=Europe/Berlin
+      - BORG_PASSPHRASE=anykey
+    networks:
+      - vault-net
+
+volumes:
+  borg-cache-vol-1:
+  borg-config-vol-1:
